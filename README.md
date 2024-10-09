@@ -15,7 +15,7 @@ This is a solution to the [Tip calculator app challenge on Frontend Mentor](http
 
 ## Overview
 
-The tip calculator app has a layout for mobile and desktop versions. Uses css grid and flexbox. Shows success and error states via style on input. The app has client-side validation on inputs and displays an error message according to input validation failure. The app can display results up to 8 digit number. The reset button clears inputs and results.
+The tip calculator app has a layout for mobile and desktop versions. Uses css grid and flexbox. Shows success and error states via style on input. The app has client-side validation on inputs and displays an error message according to input validation failure. The app can display results up to 8 digit number. The reset button clears inputs and results. Added TypeScript.
 
 ### The challenge
 
@@ -44,6 +44,8 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
+- Vanilla JavaScript
+- TypeScript
 
 ### What I learned
 
