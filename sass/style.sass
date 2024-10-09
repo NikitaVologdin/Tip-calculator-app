@@ -1,0 +1,285 @@
+@import _variables
+
+html, body
+    height: 100%
+
+body
+    display: grid
+    grid-template-rows: 1fr auto
+    grid-template-columns: auto
+    align-items: center
+    justify-content: center
+    font-family: "Space Mono", monospace
+    font-weight: 700
+    background-color: $light-grayish-cyan
+
+.animate *
+    transition: all .3s ease-in
+
+main
+    display: flex
+    justify-content: center
+
+.app
+    display: grid
+    grid-template-rows: auto 1fr
+    grid-template-columns: minmax(auto, 375px)
+    justify-items: center
+    &__logo
+        margin-top: 50px
+    &__calculator
+        margin-top: 40.86px
+        
+
+.calc
+    max-width: 100%
+    background-color: $white
+    padding: 32px
+    border-radius: 25px 25px 0 0
+    &__tip, &__people, &__results
+        margin-top: 32px
+    
+
+
+.form__control
+    display: flex
+    flex-direction: column
+    gap: 6px
+    position: relative
+    label
+        display: block
+        color: $dark-grayish-cyan
+    input[type="text"]
+        width: 100%
+        color: $grayish-cyan
+        background-color: $very-light-grayish-cyan
+        border: none
+        border-radius: 5px
+        min-height: 48px
+        text-align: right
+        padding: 6px 17.5px
+        font-size: 24px
+        border: 2px solid transparent
+        &:focus
+            outline: none
+            border-color: #26C2AE
+        &::placeholder
+            color: $grayish-cyan
+        &+img
+            position: relative
+            top: -35px
+            left: 20px
+.error
+    position: absolute
+    right: 0
+    color: #E17457
+    &+input[type="text"]
+        border-color: #E17457
+.successful
+    &+input[type="text"]
+        border-color: #26C2AE
+.tip    
+    fieldset
+        border: none
+        padding: 0
+        position: relative
+        legend
+            color: $dark-grayish-cyan
+            margin-bottom: 16px
+        input[type="text"]
+            border: 2px solid transparent
+            text-align: center
+            padding: 0
+            &:focus
+                border-color: #26C2AE
+            &.successful
+                border-color: #26C2AE
+            &.error
+                border-color: #E17457
+        span.error
+            top: -35px
+
+
+
+.buttons
+    display: grid
+    grid-template-columns: repeat(2, minmax(auto, 146.6px)) 
+    column-gap: 16.5px
+    row-gap: 16px
+    label
+        margin: 0
+        font: inherit
+        border: 1px solid green
+        height: 50px
+        position: relative
+        display: flex
+        align-items: center
+        justify-content: center
+        background-color: $very-dark-cyan
+        color: $white
+        border: none
+        border-radius: 5px
+        &:hover
+            background-color: $light-grayish-cyan
+            color: $very-dark-cyan
+
+    input
+        appearance: none
+        position: absolute
+        top: 0
+        bottom: 0
+        right: 0
+        left: 0
+        z-index: 100
+        cursor: pointer
+        
+
+    label:has(input:checked)
+        background-color: $strong-cyan
+        color: $very-dark-cyan
+
+    input[type="text"]
+        background-color: $very-light-grayish-cyan
+        color: $grayish-cyan
+        border: none
+        border-radius: 5px
+        min-height: 48px
+        text-align: right
+        padding: 6px 17.5px
+        font-size: 24px
+        &:focus
+            outline: none
+        &::placeholder
+            color: $grayish-cyan
+
+.results
+    background-color: $very-dark-cyan
+    padding: 37px 23px
+    border-radius: 15px
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: 1fr 1fr 1fr
+    row-gap: 20px
+    .result
+        &__title
+            color: $white
+            font-size: 16px
+        &__subheading
+            color: $grayish-cyan
+            font-size: 13px
+        &__value
+            color: $strong-cyan
+            font-size: 32px
+    .tip, .amount
+        grid-column: span 2
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-template-rows: 1fr 
+        align-items: center
+        .result__info
+            grid-area: 1 / 1 / 1 / 2
+        .result__value
+            grid-area: 1 / 2 / 3 / 4
+            text-align: right
+    .tip
+        grid-row: 1
+    .amount
+        grid-row: 2
+    &__reset
+        grid-row: 3
+        grid-column: span 2
+        border: none
+        border-radius: 5px
+        background-color: #0D686D
+        color: $very-dark-cyan
+        text-transform: uppercase
+        font-size: 20px
+        cursor: pointer
+        &:hover
+            background-color: $strong-cyan
+            
+
+footer
+    .attribution 
+        font-size: 11px
+        text-align: center
+        padding: 7ex
+        
+    .attribution a 
+        color: hsl(228, 45%, 44%)
+    
+@media screen and (min-width: 1240px)
+    .app
+        grid-template-columns: minmax(auto, 1440px)
+        &__calculator
+            margin-top: 87px
+
+    .calc
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-template-rows: repeat(3, auto)
+        row-gap: 35px
+        column-gap: 48px
+        border-radius: 25px
+        padding: 2.5rem 1.5rem
+        &__bill
+            grid-row: 1 / 2
+            grid-column: 1 / 2
+            margin: 0
+            padding-left: 30px
+        &__tip
+            grid-row: 2 / 3
+            grid-column: 1 / 2
+            margin: 0
+            padding-left: 30px
+        &__people
+            grid-row: 3 / 4
+            grid-column: 1 / 2
+            margin: 0
+            padding-left: 30px
+        &__results
+            grid-row: span 3
+            grid-column: 2 / 3
+            margin: 0
+            padding-top: 20px
+    .bill, .people
+        gap: 0
+        label
+            margin-bottom: 6px
+    .tip
+        margin-top: -10px
+        fieldset
+            legend
+                margin-bottom: 15px
+    .buttons
+        grid-template-columns: repeat(3, minmax(auto, 117.6px))
+        column-gap: 14px
+        row-gap: 16px
+        label
+            font-size: 24px
+
+    .results
+        grid-template-rows: repeat(3, minmax(auto, auto))
+        grid-template-columns: 166.5px 166.5px
+        padding: 40px
+        &__reset
+            align-self: flex-end
+            grid-row: 4
+            height: 48px
+            color: $very-dark-cyan
+        .amount, .tip
+            display: flex
+            max-width: 100%
+            align-items: center
+            flex-wrap: wrap
+            justify-content: space-between
+        .result
+            &__info
+                align-self: center
+                margin-right: 10px
+            &__value
+                font-size: 48px
+                line-height: 100%
+                align-self: center
+
+        

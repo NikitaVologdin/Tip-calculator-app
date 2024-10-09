@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script defer src="js/script.js"></script>
+    <title>Frontend Mentor | Tip calculator app</title>
+  </head>
+  <body class="animate">
+    <main>
+      <section class="app">
+        <img
+          src="/images/logo.svg"
+          alt="Word splitter divided in two parts on two lines"
+          width="88"
+          height="53"
+          class="app__logo"
+        />
+        <div class="app__calculator">
+          <form class="calc" id="form">
+            <div class="calc__bill form__control bill">
+              <label for="bill">Bill</label>
+              <span></span>
+              <input type="text" id="bill" placeholder="0" />
+              <img
+                src="/images/icon-dollar.svg"
+                alt="Dollar icon showing that here user can input amount of money what what to split"
+                class="bill__icon"
+                width="10"
+                height="15"
+              />
+            </div>
+            <div class="calc__tip tip">
+              <fieldset id="selectTip">
+                <legend>Select Tip %</legend>
+                <span></span>
+                <div class="tip__buttons buttons">
+                  <label>
+                    5%
+                    <input type="radio" name="tip" value="5" />
+                  </label>
+                  <label
+                    >10%
+                    <input type="radio" name="tip" value="10" />
+                  </label>
+                  <label>
+                    15%
+                    <input type="radio" name="tip" value="15" />
+                  </label>
+                  <label>
+                    25%
+                    <input type="radio" name="tip" value="25" />
+                  </label>
+                  <label>
+                    50%
+                    <input type="radio" name="tip" value="50" />
+                  </label>
+                  <label>
+                    custom
+                    <input
+                      type="text"
+                      name="tip"
+                      id="custom"
+                      placeholder="Custom"
+                    />
+                    <span></span>
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+            <div class="calc__people form__control people">
+              <label for="people">Number of People</label>
+              <span></span>
+              <input type="text" id="people" placeholder="0" />
+              <img
+                src="/images/icon-person.svg"
+                alt="Dollar icon showing that here user can input amount of money what what to split"
+                class="bill__icon"
+                width="13"
+                height="16"
+              />
+            </div>
+            <div class="calc__results results">
+              <div class="results__tip result tip">
+                <div class="result__info">
+                  <h2 class="result__title">Tip Amount</h2>
+                  <span class="result__subheading">/ person</span>
+                </div>
+                <span class="result__value" id="tipAmount">$0.00</span>
+              </div>
+              <div class="results__total result amount">
+                <div class="result__info">
+                  <h2 class="result__title">Total</h2>
+                  <span class="result__subheading">/ person</span>
+                </div>
+                <span class="result__value" id="totalAmount">$0.00</span>
+              </div>
+              <button class="results__reset" id="reset">reset</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="https://vologdin.eu/portfolio">Nikita Vologdin</a>.
+      </div>
+    </footer>
+  </body>
+</html>

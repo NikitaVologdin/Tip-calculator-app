@@ -1,0 +1,398 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin
+*/
+* {
+    margin: 0;
+}
+
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/*
+  8. Create a root stacking context
+*/
+#root,
+#__next {
+    isolation: isolate;
+}
+html, body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: auto;
+  align-items: center;
+  justify-content: center;
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  background-color: hsl(185, 41%, 84%);
+}
+
+.animate * {
+  transition: all 0.3s ease-in;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(auto, 23.4375rem);
+  justify-items: center;
+}
+.app__logo {
+  margin-top: 3.125rem;
+}
+.app__calculator {
+  margin-top: 2.55375rem;
+}
+
+.calc {
+  max-width: 100%;
+  background-color: hsl(0, 0%, 100%);
+  padding: 2rem;
+  border-radius: 1.5625rem 1.5625rem 0 0;
+}
+.calc__tip, .calc__people, .calc__results {
+  margin-top: 2rem;
+}
+
+.form__control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  position: relative;
+}
+.form__control label {
+  display: block;
+  color: hsl(186, 14%, 43%);
+}
+.form__control input[type=text] {
+  width: 100%;
+  color: hsl(184, 14%, 56%);
+  background-color: hsl(189, 41%, 97%);
+  border: none;
+  border-radius: 0.3125rem;
+  min-height: 3rem;
+  text-align: right;
+  padding: 0.375rem 1.09375rem;
+  font-size: 1.5rem;
+  border: 0.125rem solid transparent;
+}
+.form__control input[type=text]:focus {
+  outline: none;
+  border-color: #26C2AE;
+}
+.form__control input[type=text]::placeholder {
+  color: hsl(184, 14%, 56%);
+}
+.form__control input[type=text] + img {
+  position: relative;
+  top: -2.1875rem;
+  left: 1.25rem;
+}
+
+.error {
+  position: absolute;
+  right: 0;
+  color: #E17457;
+}
+.error + input[type=text] {
+  border-color: #E17457;
+}
+
+.successful + input[type=text] {
+  border-color: #26C2AE;
+}
+
+.tip fieldset {
+  border: none;
+  padding: 0;
+  position: relative;
+}
+.tip fieldset legend {
+  color: hsl(186, 14%, 43%);
+  margin-bottom: 1rem;
+}
+.tip fieldset input[type=text] {
+  border: 0.125rem solid transparent;
+  text-align: center;
+  padding: 0;
+}
+.tip fieldset input[type=text]:focus {
+  border-color: #26C2AE;
+}
+.tip fieldset input[type=text].successful {
+  border-color: #26C2AE;
+}
+.tip fieldset input[type=text].error {
+  border-color: #E17457;
+}
+.tip fieldset span.error {
+  top: -2.1875rem;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 9.1625rem));
+  column-gap: 1.03125rem;
+  row-gap: 1rem;
+}
+.buttons label {
+  margin: 0;
+  font: inherit;
+  border: 0.0625rem solid green;
+  height: 3.125rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(183, 100%, 15%);
+  color: hsl(0, 0%, 100%);
+  border: none;
+  border-radius: 0.3125rem;
+}
+.buttons label:hover {
+  background-color: hsl(185, 41%, 84%);
+  color: hsl(183, 100%, 15%);
+}
+.buttons input {
+  appearance: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  cursor: pointer;
+}
+.buttons label:has(input:checked) {
+  background-color: hsl(172, 67%, 45%);
+  color: hsl(183, 100%, 15%);
+}
+.buttons input[type=text] {
+  background-color: hsl(189, 41%, 97%);
+  color: hsl(184, 14%, 56%);
+  border: none;
+  border-radius: 0.3125rem;
+  min-height: 3rem;
+  text-align: right;
+  padding: 0.375rem 1.09375rem;
+  font-size: 1.5rem;
+}
+.buttons input[type=text]:focus {
+  outline: none;
+}
+.buttons input[type=text]::placeholder {
+  color: hsl(184, 14%, 56%);
+}
+
+.results {
+  background-color: hsl(183, 100%, 15%);
+  padding: 2.3125rem 1.4375rem;
+  border-radius: 0.9375rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  row-gap: 1.25rem;
+}
+.results .result__title {
+  color: hsl(0, 0%, 100%);
+  font-size: 1rem;
+}
+.results .result__subheading {
+  color: hsl(184, 14%, 56%);
+  font-size: 0.8125rem;
+}
+.results .result__value {
+  color: hsl(172, 67%, 45%);
+  font-size: 2rem;
+}
+.results .tip, .results .amount {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+}
+.results .tip .result__info, .results .amount .result__info {
+  grid-area: 1/1/1/2;
+}
+.results .tip .result__value, .results .amount .result__value {
+  grid-area: 1/2/3/4;
+  text-align: right;
+}
+.results .tip {
+  grid-row: 1;
+}
+.results .amount {
+  grid-row: 2;
+}
+.results__reset {
+  grid-row: 3;
+  grid-column: span 2;
+  border: none;
+  border-radius: 0.3125rem;
+  background-color: #0D686D;
+  color: hsl(183, 100%, 15%);
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+.results__reset:hover {
+  background-color: hsl(172, 67%, 45%);
+}
+
+footer .attribution {
+  font-size: 0.6875rem;
+  text-align: center;
+  padding: 7ex;
+}
+footer .attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+@media screen and (min-width: 77.5em){
+  .app {
+    grid-template-columns: minmax(auto, 90rem);
+  }
+  .app__calculator {
+    margin-top: 5.4375rem;
+  }
+  .calc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    row-gap: 2.1875rem;
+    column-gap: 3rem;
+    border-radius: 1.5625rem;
+    padding: 2.5rem 1.5rem;
+  }
+  .calc__bill {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    margin: 0;
+    padding-left: 1.875rem;
+  }
+  .calc__tip {
+    grid-row: 2/3;
+    grid-column: 1/2;
+    margin: 0;
+    padding-left: 1.875rem;
+  }
+  .calc__people {
+    grid-row: 3/4;
+    grid-column: 1/2;
+    margin: 0;
+    padding-left: 1.875rem;
+  }
+  .calc__results {
+    grid-row: span 3;
+    grid-column: 2/3;
+    margin: 0;
+    padding-top: 1.25rem;
+  }
+  .bill, .people {
+    gap: 0;
+  }
+  .bill label, .people label {
+    margin-bottom: 0.375rem;
+  }
+  .tip {
+    margin-top: -0.625rem;
+  }
+  .tip fieldset legend {
+    margin-bottom: 0.9375rem;
+  }
+  .buttons {
+    grid-template-columns: repeat(3, minmax(auto, 7.35rem));
+    column-gap: 0.875rem;
+    row-gap: 1rem;
+  }
+  .buttons label {
+    font-size: 1.5rem;
+  }
+  .results {
+    grid-template-rows: repeat(3, minmax(auto, auto));
+    grid-template-columns: 10.40625rem 10.40625rem;
+    padding: 2.5rem;
+  }
+  .results__reset {
+    align-self: flex-end;
+    grid-row: 4;
+    height: 3rem;
+    color: hsl(183, 100%, 15%);
+  }
+  .results .amount, .results .tip {
+    display: flex;
+    max-width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .results .result__info {
+    align-self: center;
+    margin-right: 0.625rem;
+  }
+  .results .result__value {
+    font-size: 3rem;
+    line-height: 100%;
+    align-self: center;
+  }
+}
