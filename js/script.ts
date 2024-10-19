@@ -20,27 +20,27 @@ let isAmountOfPeopleEntered = false;
 let tip: number;
 
 const validations = {
-  isNumber: (value: any) => {
-    const result = !isNaN(value);
+  isNumber: (value: string) => {
+    const result = !isNaN(+value);
     const error = "Not a number";
     return { result, error };
   },
-  isPositive: (value: any) => {
-    const result = value >= 0;
+  isPositive: (value: string) => {
+    const result = +value >= 0;
     const error = "Not positive";
     return { result, error };
   },
-  isZero: (value: any) => {
-    const result = value != 0;
+  isZero: (value: string) => {
+    const result = +value != 0;
     const error = "Can't be null";
     return { result, error };
   },
 };
 
 interface validations {
-  [isNumber: string]: (value: any) => validationResult;
-  [isPositive: string]: (value: any) => validationResult;
-  [isZero: string]: (value: any) => validationResult;
+  [isNumber: string]: (value: string) => validationResult;
+  [isPositive: string]: (value: string) => validationResult;
+  [isZero: string]: (value: string) => validationResult;
 }
 
 interface validationResult {
@@ -48,7 +48,7 @@ interface validationResult {
   error: string;
 }
 
-function isValueValid(value: any, validations: validations) {
+function isValueValid(value: string, validations: validations) {
   const trimedValue = value.trim();
   let result = { result: true, error: "" };
   for (let key in validations) {
@@ -98,7 +98,7 @@ function isEmpty(value: string) {
   return value.length === 0;
 }
 
-function handleBlur(event: FocusEvent) {
+function handleBlur(event: UIEvent) {
   const input = event.target as HTMLInputElement;
   const value = input.value.trim();
   const empty = isEmpty(value);
@@ -143,8 +143,8 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
 });
 
-billInput.addEventListener("blur", (event: FocusEvent) => {
-  handleBlur(event);
+billInput.addEventListener("input", (event) => {
+  handleBlur(event as UIEvent);
   const isValid = isSuccessful(event.target as HTMLInputElement);
   if (isValid) {
     isSumEntered = true;
@@ -153,9 +153,9 @@ billInput.addEventListener("blur", (event: FocusEvent) => {
   }
 });
 
-amountOfPeopleInput.addEventListener("blur", (event) => {
+amountOfPeopleInput.addEventListener("input", (event) => {
   const input = event.target as HTMLInputElement;
-  handleBlur(event);
+  handleBlur(event as UIEvent);
   const isValid = isSuccessful(input);
   const isNotEmpty = +input.value > 0;
   if (isValid && isNotEmpty) {
@@ -178,17 +178,23 @@ resetButton.addEventListener("click", () => {
   const inputs = document.querySelectorAll(
     'input[type="text"]'
   ) as NodeListOf<HTMLInputElement>;
+  const radioInputs = document.querySelectorAll(
+    'input[type="radio"]'
+  ) as NodeListOf<HTMLInputElement>;
   for (let input of inputs) {
     clearError(input);
     clearSuccessful(input);
     resetInput(input);
+  }
+  for (let input of radioInputs) {
+    input.checked = false;
   }
   customTip.classList.remove("error", "successful");
   customTip.value = "";
   clearResults();
 });
 
-customTip.addEventListener("blur", (event) => {
+customTip.addEventListener("input", (event) => {
   const value = customTip.value;
   const inputValidation = isValueValid(value, validations);
   if (inputValidation.result) {

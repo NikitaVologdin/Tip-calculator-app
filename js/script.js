@@ -14,17 +14,17 @@ let isAmountOfPeopleEntered = false;
 let tip;
 const validations = {
     isNumber: (value) => {
-        const result = !isNaN(value);
+        const result = !isNaN(+value);
         const error = "Not a number";
         return { result, error };
     },
     isPositive: (value) => {
-        const result = value >= 0;
+        const result = +value >= 0;
         const error = "Not positive";
         return { result, error };
     },
     isZero: (value) => {
-        const result = value != 0;
+        const result = +value != 0;
         const error = "Can't be null";
         return { result, error };
     },
@@ -110,7 +110,7 @@ function clearResults() {
 form.addEventListener("submit", (event) => {
     event.preventDefault();
 });
-billInput.addEventListener("blur", (event) => {
+billInput.addEventListener("input", (event) => {
     handleBlur(event);
     const isValid = isSuccessful(event.target);
     if (isValid) {
@@ -119,7 +119,7 @@ billInput.addEventListener("blur", (event) => {
         showResults();
     }
 });
-amountOfPeopleInput.addEventListener("blur", (event) => {
+amountOfPeopleInput.addEventListener("input", (event) => {
     const input = event.target;
     handleBlur(event);
     const isValid = isSuccessful(input);
@@ -141,16 +141,20 @@ tipFieldset.addEventListener("click", (event) => {
 });
 resetButton.addEventListener("click", () => {
     const inputs = document.querySelectorAll('input[type="text"]');
+    const radioInputs = document.querySelectorAll('input[type="radio"]');
     for (let input of inputs) {
         clearError(input);
         clearSuccessful(input);
         resetInput(input);
     }
+    for (let input of radioInputs) {
+        input.checked = false;
+    }
     customTip.classList.remove("error", "successful");
     customTip.value = "";
     clearResults();
 });
-customTip.addEventListener("blur", (event) => {
+customTip.addEventListener("input", (event) => {
     const value = customTip.value;
     const inputValidation = isValueValid(value, validations);
     if (inputValidation.result) {
